@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheikh Musfika Lowrin - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #a78bfa;
+            --secondary: #8b5cf6;
+            --accent1: #c084fc;
+            --accent2: #d8b4fe;
+            --accent3: #e9d5ff;
+            --accent4: #f3e8ff;
+            --dark: #0f0520;
+            --card-dark: #1a0f2e;
+            --light: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0520 0%, #1a0f2e 25%, #2d1b4e 50%, #3d2463 75%, #4a2c6d 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 15px 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 1s ease;
+        }
+
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--accent3);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent3);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            background: linear-gradient(135deg, rgba(12, 107, 240, 0.3), rgba(192, 132, 252, 0.25));
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 60px 80px;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 30px;
+            padding: 3px;
+            background: linear-gradient(45deg, #a78bfa, #c084fc, #d8b4fe, #e9d5ff, #c084fc, #a78bfa);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(216, 180, 254, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 107, 157, 0.5); }
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .location {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            position: relative;
+            clear: both;
+        }
+
+        section:not(.hero) {
+            margin-top: 50px;
+        }
+
+        #projects {
+            margin-top: 120px;
+            padding-top: 500px;
+
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(26, 15, 46, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+            border: 2px solid rgba(167, 139, 250, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.2), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.5);
+            border-color: rgba(167, 139, 250, 0.6);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: white;
+            line-height: 2;
+            text-align: center;
+        }
+
+        /* Education Timeline */
+        .education-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-bottom: 30px;
+        }
+
+        .education-item {
+            background: rgba(26, 15, 46, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .education-item:nth-child(1) { border-left: 4px solid #a78bfa; }
+        .education-item:nth-child(2) { border-left: 4px solid #c084fc; }
+        .education-item:nth-child(3) { border-left: 4px solid #d8b4fe; }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            background: rgba(26, 15, 46, 0.95);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .education-item h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .education-item .period {
+            color: #d8b4fe;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .education-item .degree {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Research Section */
+        .research-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+        }
+
+        #research {
+            padding-bottom: 150px;
+            margin-bottom: 50px;
+        }
+
+        .research-box h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .research-box .supervisor {
+            color: #d8b4fe;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .research-box .period {
+            color: #c084fc;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .research-box p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 50px;
+        }
+
+        .project-card {
+            background: rgba(26, 15, 46, 0.8);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+            border: 2px solid;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: floatCard 8s ease-in-out infinite;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0s; border-color: #a78bfa; border-left: 4px solid #a78bfa; }
+        .project-card:nth-child(2) { animation-delay: 2s; border-color: #8b5cf6; border-left: 4px solid #8b5cf6; }
+        .project-card:nth-child(3) { animation-delay: 4s; border-color: #c084fc; border-left: 4px solid #c084fc; }
+        .project-card:nth-child(4) { animation-delay: 6s; border-color: #d8b4fe; border-left: 4px solid #d8b4fe; }
+        .project-card:nth-child(5) { animation-delay: 8s; border-color: #e9d5ff; border-left: 4px solid #e9d5ff; }
+        .project-card:nth-child(6) { animation-delay: 10s; border-color: #f3e8ff; border-left: 4px solid #f3e8ff; }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.5);
+            animation: none;
+        }
+
+        .project-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card .course-code {
+            display: inline-block;
+            background: rgba(167, 139, 250, 0.3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(167, 139, 250, 0.5);
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            padding-bottom: 50px;
+        }
+
+        .skill-card {
+            background: rgba(26, 15, 46, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .skill-card:nth-child(1) { border-color: #a78bfa; border-top: 3px solid #a78bfa; }
+        .skill-card:nth-child(2) { border-color: #8b5cf6; border-top: 3px solid #8b5cf6; }
+        .skill-card:nth-child(3) { border-color: #c084fc; border-top: 3px solid #c084fc; }
+        .skill-card:nth-child(4) { border-color: #d8b4fe; border-top: 3px solid #d8b4fe; }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(26, 15, 46, 0.95);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .skill-card h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card .icon {
+            font-size: 2rem;
+        }
+
+        .skill-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Hobbies Section */
+        .hobbies-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            color: white;
+            text-align: center;
+            line-height: 2;
+        }
+
+        .hobby-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .hobby-tag {
+            background: rgba(26, 15, 46, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            border: 2px solid rgba(167, 139, 250, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .hobby-tag:hover {
+            background: rgba(26, 15, 46, 0.95);
+            border-color: rgba(167, 139, 250, 0.8);
+            transform: translateY(-5px) scale(1.1);
+            animation: none;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+        #hobbies .section-title {
+    margin-bottom: 30px;        /* Reduce from 60px to 30px */
+}
+
+#hobbies .section-title::after {
+    margin: 10px auto 20px;     /* Reduce top margin from 20px to 10px */
+}
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(360deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.3rem; }
+            .section-title { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            nav { padding: 10px 20px; }
+            nav a { margin: 0 8px; font-size: 12px; }
+            .hero-content { padding: 40px 30px; }
+            .contact-btns { flex-direction: column; }
+        }
+
+        /* Scroll effects */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom cursor effect */
+        body {
+            cursor: default;
+        }
+
+        a, button, .btn {
+            cursor: pointer;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sheikh Musfika Lowrin</h1>
+            <h2>Microbiology & Molecular Biology Student</h2>
+            <p class="location">📍 Dhaka, Bangladesh</p>
+            <div class="contact-btns">
+                <a href="mailto:sheikh.lowrin09@northsouth.edu" class="btn btn-primary">
+                    <span>✉️ sheikh.lowrin09@northsouth.edu</span>
+                </a>
+                <a href="tel:+8801744800781" class="btn btn-secondary">
+                    <span>📱 01744800781</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card about-content">
+                <p>A motivated and detail-oriented Microbiology student at North South University with a deep interest in public health, research methodologies, and evidence-driven problem-solving. Skilled in wet-lab techniques, data interpretation, and collaborative scientific work. Demonstrates strong analytical thinking, disciplined project execution, and the ability to translate scientific concepts into meaningful community-focused outcomes. Beyond academia, actively engages in literature, performing arts, and creative expression, fostering well-rounded communication and presentation skills. Driven to contribute to impactful, ethically grounded research initiatives that bridge scientific discovery with societal well-being.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item fade-in">
+                    <h3>🎓 North South University</h3>
+                    <p class="degree">Bachelor of Microbiology and Molecular Biology (BMD)</p>
+                    <p class="period">Fall 2023 – Ongoing</p>
+                </div>
+                <div class="education-item fade-in">
+                    <h3>🎓 Lalmatia Govt. Mohila College (LMC)</h3>
+                    <p class="degree">Higher Secondary Certificate (HSC)</p>
+                    <p class="period">2020 – 2021</p>
+                </div>
+                <div class="education-item fade-in">
+                    <h3>🎓 Jamalpur Government Girls High School</h3>
+                    <p class="degree">Secondary School Certificate (SSC)</p>
+                    <p class="period">2018 – 2019</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research Experience</h2>
+            <div class="glass-card research-box">
+                <h3>🔬 Research Assistant</h3>
+                <p class="period">2025 – Present</p>
+                <p class="supervisor">Under the supervision of Dr. S. M. Bakhtiar Ul Islam</p>
+                <p>Working on a structured academic research initiative. Responsibilities include literature review, data handling, methodological planning, and preliminary analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Academic Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <span class="course-code">BMD NSU</span>
+                    <h3>Research Paper Review Program</h3>
+                    <p>Presentation Topic: "Exosomes Derived from Natural Killer Cells Exert Therapeutic Effects in Melanoma". Reviewed and presented key findings from a peer-reviewed study on NK-cell-derived exosomes and their therapeutic potential. Demonstrated capability in scientific interpretation, slide design, and concise communication of advanced immunotherapy concepts.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <span class="course-code">MIC101</span>
+                    <h3>Microbiology Report</h3>
+                    <p>Title: "Isolation and Identification of E. coli from Water". Executed laboratory procedures involving sample collection, culturing, staining, and biochemical testing for the detection of E. coli. Documented findings through a formal report outlining methodology, analysis, and microbial safety implications.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <span class="course-code">MIC309</span>
+                    <h3>Enzymology</h3>
+                    <p>Assignment Report & Presentation. Conducted an in-depth analysis of enzyme purification techniques, including differential centrifugation, salting-out processes, dialysis, and SDS-PAGE. Prepared a comprehensive scientific report and delivered a structured presentation demonstrating understanding of enzyme isolation workflows and their relevance in biochemical research.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <span class="course-code">PSY101</span>
+                    <h3>Psychology Report</h3>
+                    <p>Topic: "Development Studies: Parenting Styles & Social Development". Authored a structured academic report exploring major parenting paradigms and their influence on cognitive, emotional, and social development. Applied psychological theory and academic literature to real-world developmental contexts.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <span class="course-code">PBH101</span>
+                    <h3>Public Health Report</h3>
+                    <p>Title: "Teen Pregnancy". Prepared an analytical report discussing determinants, public-health consequences, and preventive strategies related to adolescent pregnancy. Demonstrated ability to contextualize health issues within socio-behavioral frameworks.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <span class="course-code">ENG105</span>
+                    <h3>Advanced Composition</h3>
+                    <p>Research Paper: "Emerging Threats: Investigating the Impending Zombie Virus Outbreak". Developed a research-based analytical paper that examined hypothetical viral evolution and outbreak modeling. Integrated scientific literature, critical reasoning, and scenario analysis to explore public-health implications in a speculative virology context.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <h3><span class="icon">🧪</span> Laboratory Techniques</h3>
+                    <p>Wet-lab techniques, sample collection, microbial culturing, staining, biochemical testing, enzyme purification (differential centrifugation, salting-out, dialysis, SDS-PAGE)</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <h3><span class="icon">🔬</span> Research Skills</h3>
+                    <p>Literature review, data handling and interpretation, methodological planning, preliminary analysis, scientific report writing, presentation design and delivery</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <h3><span class="icon">💡</span> Analytical Skills</h3>
+                    <p>Evidence-driven problem-solving, data interpretation, analytical thinking, project execution</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <h3><span class="icon">💬</span> Communication</h3>
+                    <p>Scientific writing, presentation skills, communication of complex scientific concepts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <div class="container">
+            <h2 class="section-title">Hobbies & Interests</h2>
+            <div class="glass-card hobbies-content">
+                <p>Beyond academia, I actively engage in creative pursuits and personal development.</p>
+                <div class="hobby-tags">
+                    <div class="hobby-tag">🎤 Singing</div>
+                    <div class="hobby-tag">💃 Dancing</div>
+                    <div class="hobby-tag">🎭 Recitation Performance</div>
+                    <div class="hobby-tag">📚 Literature</div>
+                    <div class="hobby-tag">🌱 Personal Development</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sheikh Musfika Lowrin. All rights reserved.</p>
+        <p>Department of Biochemistry & Microbiology | North South University</p>
+    </footer>
+
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 8 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Add dynamic mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.style.position = 'fixed';
+            trail.style.width = '5px';
+            trail.style.height = '5px';
+            trail.style.borderRadius = '50%';
+            trail.style.background = 'rgba(167, 139, 250, 0.6)';
+            trail.style.pointerEvents = 'none';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trail.style.zIndex = '9999';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.style.transition = 'all 0.3s ease';
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(2)';
+            }, 10);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 300);
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-content, #about .glass-card');
+            
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.1 + (index * 0.02);
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
